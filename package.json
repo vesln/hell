@@ -1,0 +1,38 @@
+{
+  "name": "hell",
+  "preferGlobal": true,
+  "version": "0.0.1",
+  "description": "",
+  "keywords": [],
+  "main": "index.js",
+  "homepage": "https://github.com/vesln/hell",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/vesln/hell.git"
+  },
+  "bin": {
+    "hell": "./bin/hell"
+  },
+  "author": "Veselin Todorov <hi@vesln.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "~1.13.0",
+    "chai": "~1.8.1",
+    "jshint": "~2.3.0",
+    "coveralls": "~2.3.0",
+    "jscoverage": "~0.3.8",
+    "mocha-lcov-reporter": "0.0.1",
+    "nixt": "~0.0.4"
+  },
+  "dependencies": {
+    "commander": "~2.0.0",
+    "shelljs": "~0.2.6",
+    "esprima": "~1.0.4"
+  }
+}
