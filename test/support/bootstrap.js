@@ -31,9 +31,11 @@ chai.Assertion.includeStack = true;
 /**
  * Return path to a fixture.
  *
+ * @param {String} path
  * @returns {String}
+ * @api public
  */
 
-global.fixt = function(extra) {
+global.fixture = function(extra) {
   return join(__dirname, '..', 'fixtures', extra);
 };

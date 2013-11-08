@@ -32,7 +32,6 @@
   },
   "dependencies": {
     "commander": "~2.0.0",
-    "shelljs": "~0.2.6",
     "esprima": "~1.0.4"
   }
 }
