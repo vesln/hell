@@ -30,5 +30,6 @@ describe('hell', function() {
     source.contexts[12].signature().should.eq('foo.1.baz');
     source.contexts[13].signature().should.eq('foo.baz.bar');
     source.contexts[14].signature().should.eq('foo.?.bar');
+    source.contexts[15].signature().should.eq('foo.1');
   });
 });

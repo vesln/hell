@@ -22,3 +22,4 @@ foo[1]['baz'] = function() {}
 
 foo['baz'].bar = function() {}
 foo[index()].bar = function() {}
+foo[1] = function() {}
