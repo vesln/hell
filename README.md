@@ -20,20 +20,13 @@ $ npm install hell -g
 ### Running the tests
 
 ```bash
-$ npm install
-$ make test
+$ npm test
 ```
 
 ### Test coverage
 
 ```bash
-$ make test-cov
-```
-
-### JSHint
-
-```bash
-$ make jshint
+$ npm run-script coverage
 ```
 
 ## Support the author
