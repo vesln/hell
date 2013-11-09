@@ -10,7 +10,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "./node_modules/.bin/mocha --reporter dot --ui bdd test/*.test.js",
+    "test": "./node_modules/.bin/mocha test/*.test.js",
     "pretest": "./node_modules/.bin/jshint .",
     "coverage": "istanbul cover ./node_modules/.bin/_mocha test/*.test.js",
     "coveralls": "istanbul cover ./node_modules/.bin/_mocha test/*.test.js --report lcovonly && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
