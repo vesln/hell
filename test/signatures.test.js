@@ -2,7 +2,7 @@ describe('hell', function() {
   var source = null;
 
   beforeEach(function() {
-    source = hell.analyzeFile(fixture('signature.js'));
+    source = hell.processFile(fixture('signature.js'));
   });
 
   it('has a signature for Program', function() {
