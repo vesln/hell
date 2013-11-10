@@ -6,7 +6,7 @@ describe('hell', function() {
   });
 
   it('has a signature for Program', function() {
-    source.contexts[0].signature().should.eq('main');
+    source.contexts[0].signature().should.eq('*');
   });
 
   it('has a signature for named function', function() {
