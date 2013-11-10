@@ -72,14 +72,29 @@ function error(arr) {
   printStream(arr, process.stderr);
 }
 
+/**
+ * Return program options.
+ *
+ * @param {Command} program
+ * @returns {Object}
+ * @api private
+ */
+
+function options(program) {
+  return {
+    all: program.all,
+    min: program.min,
+  };
+}
+
 program
   .usage('<path>')
-  .version(JSON.parse(fs.readFileSync(__dirname + '/../package.json', 'utf8')).version)
+  .version(require('../package.json', 'utf8').version)
   .option('--ignore <path>', 'specify path to ignore')
-  .option('--min <value>', 'specify min score')
-  .option('--max <value>', 'specify max score')
+  .option('--min <number>', 'specify min score')
+  .option('--all', 'include source file total in the list')
   .option('--merge', 'merge the score of child functions into their parent')
-  .option('--formatter <name>', 'specify formatter to use', 'default')
+  .option('--formatter <name>', 'specify formatter to use', 'rank')
   .option('--formatters', 'display all formatters');
 
 program.name = 'hell';
@@ -105,12 +120,19 @@ program.on('ignore', function(path) {
   ignore.push(path);
 });
 
+// Parse the arguments
+
 program.parse(process.argv);
+
+// Check if a path hasn't been supplied and if so,
+// show the help by exiting with 1
 
 if (!program.args.length) {
   program.help();
   process.exit(1);
 }
+
+// Try to load the desired formatter
 
 try {
   Formatter = load(program.formatter);
@@ -120,7 +142,12 @@ try {
   process.exit(1);
 }
 
+// Analyze & build reports
+
 var files = find(program.args[0], { ext: '.js', ignore: ignore });
 var result = hell.process(files);
-var formatter = new Formatter(result, process.stdout);
+var formatter = new Formatter(result, process.stdout, options(program));
+
+// Print the results
+
 formatter.run();
