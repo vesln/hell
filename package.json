@@ -29,7 +29,6 @@
     "chai": "~1.8.1",
     "jshint": "~2.3.0",
     "coveralls": "~2.3.0",
-    "jscoverage": "~0.3.8",
     "nixt": "~0.0.4",
     "istanbul": "~0.1.44"
   },

@@ -1,1 +1,125 @@
 #!/usr/bin/env node
+
+/**
+ * Core dependencies.
+ */
+
+var fs = require('fs');
+var path = require('path');
+
+/**
+ * External dependencies.
+ */
+
+var program = require('commander');
+
+/**
+ * Internal dependencies.
+ */
+
+var hell = require('..');
+
+/**
+ * Ignore paths.
+ */
+
+var ignore = [];
+
+/**
+ * Formatter.
+ */
+
+var Formatter = null;
+
+/**
+ * "Print" something to `stream`.
+ *
+ * @param {Array|String} messages
+ * @param {WritableStream} stream
+ * @api private
+ */
+
+function printStream(messages, stream) {
+  if (!Array.isArray(messages)) messages = [messages];
+  stream.write('\n');
+  messages.forEach(function(msg) {
+    stream.write('    ' + msg + '\n');
+  });
+  stream.write('\n');
+};
+
+/**
+ * Print message(es) to stdout.
+ *
+ * @param {Array|String} messages
+ * @api private
+ */
+
+function print(arr) {
+  printStream(arr, process.stdout);
+}
+
+/**
+ * Print message(es) to stderr.
+ *
+ * @param {Array|String} messages
+ * @api private
+ */
+
+function error(arr) {
+  printStream(arr, process.stderr);
+}
+
+program
+  .usage('<path>')
+  .version(JSON.parse(fs.readFileSync(__dirname + '/../package.json', 'utf8')).version)
+  .option('--ignore <path>', 'specify path to ignore')
+  .option('--min <value>', 'specify min score')
+  .option('--max <value>', 'specify max score')
+  .option('--merge', 'merge the score of child functions into their parent')
+  .option('--formatter <name>', 'specify formatter to use', 'total')
+  .option('--formatters', 'display all formatters');
+
+program.name = 'hell';
+
+// --formatters
+
+program.on('formatters', function() {
+  var all = fs.readdirSync(path.join(__dirname, '..', 'lib', 'hell', 'formatter'));
+
+  var formatters = all.filter(function(file) {
+    return !/^\./.test(file);
+  }).map(function(file) {
+    return file.replace(/\.js$/, '');
+  });
+
+  print(formatters);
+  process.exit();
+});
+
+// --ignore
+
+program.on('ignore', function(path) {
+  ignore.push(path);
+});
+
+program.parse(process.argv);
+
+if (!program.args.length) {
+  program.help();
+  process.exit(1);
+}
+
+try {
+  Formatter = load(program.formatter);
+} catch (err) {
+  error(err);
+  error('Invalid formatter: ' + program.formatter);
+  process.exit(1);
+}
+
+var files = hell.lookup(program.args, ignore);
+var result = hell.process(files);
+var formatter = new Formatter(result, process.stdout);
+
+formatter.run();
