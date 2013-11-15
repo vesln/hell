@@ -93,7 +93,6 @@ program
   .option('--ignore <path>', 'specify path to ignore')
   .option('--min <number>', 'specify min score', 20)
   .option('--all', 'include source file total in the list')
-  .option('--merge', 'merge the score of child functions into their parent')
   .option('--formatter <name>', 'specify formatter to use', 'rank')
   .option('--formatters', 'display all formatters');
 
