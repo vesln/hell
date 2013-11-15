@@ -37,6 +37,7 @@
     "esprima": "~1.0.4",
     "estraverse": "~1.4.0",
     "refractory": "0.0.3",
-    "fine": "0.0.2"
+    "fine": "0.0.2",
+    "super": "~0.2.1"
   }
 }
