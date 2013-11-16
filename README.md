@@ -43,12 +43,11 @@ You are about to do some refactoring? Hell will give you hints what to tackle.
 
 #### Why is this even useful?
 
-Nobody likes God classes/functions.
+Nobody likes God classes/methods.
 Take a look at the [Single responsibility principle](http://en.wikipedia.org/wiki/Single_responsibility_principle) and think about it
-a little bit. Is your method/class doing too much? Can it be simplified? Can it
-be improved?
+a little bit. Is it doing too much? Can it be simplified? Can it be improved?
 
-#### That's fine. Numbers. How do I decrease the complexity?
+#### That's fine. Some numbers. How do I decrease them?
 
 Great question, thanks for asking! There is no universal answer to this and
 really depends on the app that you are working on. Keep in mind that even if you
@@ -62,7 +61,7 @@ No.
 
 #### I can cheat it! I can decrease the complexity but keep the same behavior!
 
-It's probably a bug, which shouldn't be surprising given the early stage of the
+It's a bug, probably, which shouldn't be surprising given the early stage of the
 project. Reporting problems is highly appreciated!
 
 #### Can we improve it somehow?
@@ -70,7 +69,7 @@ project. Reporting problems is highly appreciated!
 Totally! This is just an initial implementation and I would love to hear ideas and merge
 pull requests in.
 
-#### I have code that hasn't been detected as complex enough, but it is. What do we do?
+#### I have code that couldn't be detected as complex enough, but it is. What do we do?
 
 That's actually awesome! Please open a new issue with the code and explain why you
 think it's giving you a wrong result. From there we can discuss and improve the
