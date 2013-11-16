@@ -48,8 +48,7 @@ Take a look at the [Single responsibility principle](http://en.wikipedia.org/wik
 a little bit. Is your method/class doing too much? Can it be simplified? Can it
 be improved?
 
-#### That's fine. Numbers. How do I decrease the complexity and make them
-smaller?
+#### That's fine. Numbers. How do I decrease the complexity?
 
 Great question, thanks for asking! There is no universal answer to this and
 really depends on the app that you are working on. Keep in mind that even if you
@@ -71,8 +70,7 @@ project. Reporting problems is highly appreciated!
 Totally! This is just an initial implementation and I would love to hear ideas and merge
 pull requests in.
 
-#### I have a function that hasn't been detected as complex enough. What do we
-do?
+#### I have code that hasn't been detected as complex enough, but it is. What do we do?
 
 That's actually awesome! Please open a new issue with the code and explain why you
 think it's giving you a wrong result. From there we can discuss and improve the
