@@ -11,7 +11,7 @@ var path = require('path');
  * External dependencies.
  */
 
-var program = require('commander');
+var electron = require('electron');
 var load = require('refractory')(module, '../lib/hell/formatters', '{{HOME}}/.hell/formatters');
 var find = require('fine');
 
@@ -26,12 +26,6 @@ var hell = require('..');
  */
 
 var ignore = [];
-
-/**
- * Formatter.
- */
-
-var Formatter = null;
 
 /**
  * "Print" something to `stream`.
@@ -72,81 +66,76 @@ function error(arr) {
   printStream(arr, process.stderr);
 }
 
-/**
- * Return program options.
- *
- * @param {Command} program
- * @returns {Object}
- * @api private
- */
-
-function options(program) {
-  return {
-    all: program.all,
-    min: program.min,
-  };
-}
+var program = electron('hell')
+  .name('Hell')
+  .desc('Understand your codez.')
+  .theme('simple', {
+    command: 'absent',
+    usage: '<options> <path>'
+  })
+  .version(require('../package.json', 'utf8').version)
 
 program
-  .usage('<path>')
-  .version(require('../package.json', 'utf8').version)
+  .command('default')
+  .action(runHell);
+  
+program
+  .command('absent')
   .option('--ignore <path>', 'specify path to ignore')
-  .option('--min <number>', 'specify min score', 20)
+  .option('--min [20]', 'specify min score')
   .option('--all', 'include source file total in the list')
-  .option('--formatter <name>', 'specify formatter to use', 'rank')
-  .option('--formatters', 'display all formatters');
+  .option('-f, --formatter [rank]', 'specify formatter to use')
+  .option('-F, --formatters', 'display all formatters')
+  .action(runHell);
+  
+function runHell(argv) {
+  var ignore = argv.param('ignore');
+  var target = argv.commands[0];
+  var formatter = argv.param('f', 'formatter') || 'rank';
+  var Formatter = null;
+  var options = {
+    all: argv.param('all'),
+    min: argv.param('min') || 20
+  };
+ 
+  if (argv.mode('F', 'formatters')) {
+    var all = fs.readdirSync(path.join(__dirname, '..', 'lib', 'hell', 'formatters'));
 
-program.name = 'hell';
+    var formatters = all.filter(function(file) {
+      return !/^\./.test(file);
+    }).map(function(file) {
+      return file.replace(/\.js$/, '');
+    });
 
-// --formatters
+    print(formatters);
+    process.exit();
+  }
+  
+  if (!target) {
+    error('Please specify a path');
+    process.exit(1);
+  }
+  
+  try {
+    Formatter = load(formatter);
+  } catch (err) {
+    error(err);
+    error('Invalid formatter: ' + program.formatter);
+    process.exit(1);
+  }
 
-program.on('formatters', function() {
-  var all = fs.readdirSync(path.join(__dirname, '..', 'lib', 'hell', 'formatter'));
+  // Analyze & build reports
+  if ('string' === typeof ignore) ignore = [ ignore ];
+  
+  var files = find(target, { ext: '.js', ignore: ignore });
+  var result = hell.process(files);
+  var formatter = new Formatter(result, process.stdout, options);
 
-  var formatters = all.filter(function(file) {
-    return !/^\./.test(file);
-  }).map(function(file) {
-    return file.replace(/\.js$/, '');
-  });
+  // Print the results
 
-  print(formatters);
-  process.exit();
-});
-
-// --ignore
-
-program.on('ignore', function(path) {
-  ignore.push(path);
-});
+  formatter.run();
+}
 
 // Parse the arguments
 
-program.parse(process.argv);
-
-// Check if a path hasn't been supplied and if so,
-// show the help by exiting with 1
-
-if (!program.args.length) {
-  program.help();
-  process.exit(1);
-}
-
-// Try to load the desired formatter
-
-try {
-  Formatter = load(program.formatter);
-} catch (err) {
-  error(err);
-  error('Invalid formatter: ' + program.formatter);
-  process.exit(1);
-}
-
-// Analyze & build reports
-
-var files = find(program.args[0], { ext: '.js', ignore: ignore });
-var result = hell.process(files);
-var formatter = new Formatter(result, process.stdout, options(program));
-
-// Print the results
-
-formatter.run();
+program.parse();

@@ -22,7 +22,7 @@ describe('cli', function() {
   describe('--help', function() {
     it('prints help', function(done) {
       app()
-      .stdout(/Usage: hell <path>/)
+      .stdout(/Usage: hell <options> <path>/)
       .run('--help')
       .end(done);
     });
