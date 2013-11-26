@@ -25,6 +25,16 @@ Experimental complexity analyzer for JavaScript projects.
 ```
 ## Formatters
 
+### Tree
+
+![tree](http://i.imgur.com/AMUiFlb.png)
+
+### Rank
+
+### Summary
+
+### JSON
+
 ## FAQ
 
 #### When to use it?
