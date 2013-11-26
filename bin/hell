@@ -72,27 +72,11 @@ function error(arr) {
   printStream(arr, process.stderr);
 }
 
-/**
- * Return program options.
- *
- * @param {Command} program
- * @returns {Object}
- * @api private
- */
-
-function options(program) {
-  return {
-    all: program.all,
-    min: program.min,
-  };
-}
-
 program
   .usage('<path>')
   .version(require('../package.json', 'utf8').version)
   .option('--ignore <path>', 'specify path to ignore')
   .option('--min <number>', 'specify min score', 0)
-  .option('--all', 'include source file total in the list')
   .option('--formatter <name>', 'specify formatter to use', 'rank')
   .option('--formatters', 'display all formatters');
 
@@ -132,6 +116,6 @@ try {
 
 var files = find(program.args[0], { ext: '.js', ignore: ignore });
 var result = hell.process(files);
-var formatter = new Formatter(result, process.stdout, options(program));
+var formatter = new Formatter(result, process.stdout, { min: program.min });
 
 formatter.run();

@@ -20,7 +20,6 @@ Experimental complexity analyzer for JavaScript projects.
     -V, --version       output the version number
     --ignore <path>     specify path to ignore
     --min <number>      specify min score
-    --all               include source file total in the list
     --formatter <name>  specify formatter to use
     --formatters        display all formatters
 ```
