@@ -9,6 +9,12 @@
 
 Experimental complexity analyzer for JavaScript projects.
 
+## Installation
+
+```bash
+$ npm install hell -g
+```
+
 ## Usage
 
 ```
@@ -41,6 +47,19 @@ Experimental complexity analyzer for JavaScript projects.
 
 ![json](http://i.imgur.com/nvb0BOy.png)
 
+## Tests
+
+### Running the tests
+
+```bash
+$ npm test
+```
+
+### Test coverage
+
+```bash
+$ npm run-script coverage
+```
 ## FAQ
 
 #### When to use it?
@@ -73,25 +92,6 @@ That's actually awesome! Please open a new issue with the code and explain why y
 think it's giving you a wrong result. From there we can start a discussion and improve the
 tool.
 
-## Installation
-
-```bash
-$ npm install hell -g
-```
-
-## Tests
-
-### Running the tests
-
-```bash
-$ npm test
-```
-
-### Test coverage
-
-```bash
-$ npm run-script coverage
-```
 
 ## Support the author
 
