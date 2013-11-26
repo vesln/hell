@@ -13,8 +13,8 @@ describe('hell', function() {
     source.contexts[1].signature().should.eq('named');
   });
 
-  it('has a signature for anon functions', function() {
-    source.contexts[2].signature().should.eq('anon');
+  it('has a signature for anonymous functions', function() {
+    source.contexts[2].signature().should.eq('anonymous');
   });
 
   it('has a signature for assigned functions', function() {
