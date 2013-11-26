@@ -7,7 +7,7 @@
 
 ## Synopsis
 
-Hell is an experimental complexity analyzer for JavaScript projects.
+Experimental complexity analyzer for JavaScript projects.
 
 ## Usage
 
@@ -35,12 +35,6 @@ you a quick overview of where most of the complexity is. I consider it useful
 when dealing with code that I don't know perfectly well too.
 You are about to do some refactoring? Hell will give you hints what to tackle.
 
-#### Why is this even useful?
-
-Nobody likes God classes/methods.
-Take a look at the [Single responsibility principle](http://en.wikipedia.org/wiki/Single_responsibility_principle) and think about it
-a little bit. Is it doing too much? Can it be simplified? Can it be improved?
-
 #### That's fine. Some numbers. How do I decrease them?
 
 Great question, thanks for asking! There is no universal answer to this and
@@ -61,7 +55,7 @@ pull requests in.
 #### I have code that couldn't be detected as complex enough, but it is. What do we do?
 
 That's actually awesome! Please open a new issue with the code and explain why you
-think it's giving you a wrong result. From there we can discuss and improve the
+think it's giving you a wrong result. From there we can start a discussion and improve the
 tool.
 
 ## Installation
