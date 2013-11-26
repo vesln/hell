@@ -62,21 +62,6 @@ $ npm run-script coverage
 ```
 ## FAQ
 
-#### When to use it?
-
-It's perfect when you are joining a new project since it can give
-you a quick overview of where most of the complexity is. I consider it useful
-when dealing with code that I don't know perfectly well too.
-You are about to do some refactoring? Hell will give you hints what to tackle.
-
-#### That's fine. Some numbers. How do I decrease them?
-
-Great question, thanks for asking! There is no universal answer to this and
-really depends on the app that you are working on. Keep in mind that even if you
-have the perfect code it will still have complexity in it, which is fine.
-However, a lot of complexity concentrated in one single place is a bad sign and you
-should be aware of it.
-
 #### Is this tool perfect?
 
 No.
@@ -86,7 +71,7 @@ No.
 Totally! This is just an initial implementation and I would love to hear ideas and merge
 pull requests in.
 
-#### I have code that couldn't be detected as complex enough, but it is. What do we do?
+#### I have code that couldn't be detected as complex enough, but I believe it is. What do we do?
 
 That's actually awesome! Please open a new issue with the code and explain why you
 think it's giving you a wrong result. From there we can start a discussion and improve the
