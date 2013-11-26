@@ -28,12 +28,6 @@ Hell is an experimental complexity analyzer for JavaScript projects.
 
 ## FAQ
 
-#### How does it work?
-
-It will statically analyze your code and count branches, assignments, function
-calls etc. These have different score. For instance branch is 10,
-assignment 3 etc.
-
 #### When to use it?
 
 It's perfect when you are joining a new project since it can give
@@ -58,11 +52,6 @@ should be aware of it.
 #### Is this tool perfect?
 
 No.
-
-#### I can cheat it! I can decrease the complexity but keep the same behavior!
-
-It's a bug, probably, which shouldn't be surprising given the early stage of the
-project. Reporting problems is highly appreciated!
 
 #### Can we improve it somehow?
 
