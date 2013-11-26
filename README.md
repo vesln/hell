@@ -31,9 +31,15 @@ Experimental complexity analyzer for JavaScript projects.
 
 ### Rank
 
+![rank](http://i.imgur.com/baXx5fO.png)
+
 ### Summary
 
+![summary](http://i.imgur.com/qOZhzHi.png)
+
 ### JSON
+
+![json](http://i.imgur.com/nvb0BOy.png)
 
 ## FAQ
 
