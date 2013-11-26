@@ -98,8 +98,6 @@ program
 
 program.name = 'hell';
 
-// --formatters
-
 program.on('formatters', function() {
   var all = fs.readdirSync(path.join(__dirname, '..', 'lib', 'hell', 'formatter'));
 
@@ -113,25 +111,16 @@ program.on('formatters', function() {
   process.exit();
 });
 
-// --ignore
-
 program.on('ignore', function(path) {
   ignore.push(path);
 });
 
-// Parse the arguments
-
 program.parse(process.argv);
-
-// Check if a path hasn't been supplied and if so,
-// show the help by exiting with 1
 
 if (!program.args.length) {
   program.help();
   process.exit(1);
 }
-
-// Try to load the desired formatter
 
 try {
   Formatter = load(program.formatter);
@@ -141,12 +130,8 @@ try {
   process.exit(1);
 }
 
-// Analyze & build reports
-
 var files = find(program.args[0], { ext: '.js', ignore: ignore });
 var result = hell.process(files);
 var formatter = new Formatter(result, process.stdout, options(program));
-
-// Print the results
 
 formatter.run();
