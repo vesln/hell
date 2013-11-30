@@ -83,7 +83,7 @@ program
 program.name = 'hell';
 
 program.on('formatters', function() {
-  var all = fs.readdirSync(path.join(__dirname, '..', 'lib', 'hell', 'formatter'));
+  var all = fs.readdirSync(path.join(__dirname, '..', 'lib', 'hell', 'formatters'));
 
   var formatters = all.filter(function(file) {
     return !/^\./.test(file);
