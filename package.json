@@ -1,9 +1,8 @@
 {
   "name": "hell",
   "preferGlobal": true,
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Experimental complexity analyzer for JavaScript projects",
-  "keywords": [],
   "main": "./lib/hell.js",
   "homepage": "https://github.com/vesln/hell",
   "directories": {
